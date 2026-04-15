@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<div class="container"></div>
+<style>
+  body {
+    font-family: sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    border-left: 5px solid #2c3e50;
+    padding-left: 10px;
+    margin-top: 30px;
+    color: #2c3e50;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .box {
+    background: #ffffff;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .row {
+    margin: 8px 0;
+  }
+
+ .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+.row label {
+  width: 120px;
+ }
+
+ .row input,
+ .row select {
+   flex: 1;
+ }
+
+  label {
+    display: inline-block;
+    width: 140px;
+  }
+
+  input, select {
+    padding: 5px;
+    width: 150px;
+  }
+
+  .flex {
+  display: flex;
+  gap: 20px;
+  }
+
+  .flex .box {
+   flex: 1;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #34495e;
+  }
+
+
+  .tabs {
+  margin-top: 20px;
+}
+
+.tabs button {
+  margin-right: 5px;
+  padding: 8px 12px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+  .result {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .hitResult {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .doubleResult {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .critResult {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+  .flex {
+    flex-direction: column;
+  }
+
+  label {
+    width: 100px;
+  }
+ }
+
+</style>
+
+  <title>FEダメージ計算</title>
+</head>
+
+
+<body>
+<h1>FE値計算</h1>
+<h2>値入力</h2>
+ 
+<div class="flex">
+
+<h2>自分</h2>
+
+<div class="box">
+
+<div class="row">
+  <label>力</label>
+  <input type="number" id="attack" value="10">
+</div>
+
+<div class="row">
+  <label>魔力</label>
+  <input type="number" id="magic" value="10">
+</div>
+
+<div class="row">
+  <label>技</label>
+  <input type="number" id="skill" value="10">
+</div>
+
+<div class="row">
+  <label>速さ</label>
+  <input type="number" id="playerSpeed" value="10">
+</div>
+
+<div class="row">
+  <label>幸運</label>
+  <input type="number" id="critLuck" value="10">
+</div>
+
+<div class="row">
+  <label>体格</label>
+  <input type="number" id="Constitution" value="5">
+</div>
+
+<div class="row">
+  <label>武器</label>
+  <select id="playerWeapon"></select>
+</div>
+
+<div class="row">
+  <label>攻撃距離</label>
+  <select id="attackRange">
+    <option value="1">近接</option>
+    <option value="2">2距離</option>
+    <option value="3">3距離</option>
+    <option value="4">4距離</option>
+    <option value="5">5距離</option>
+    <option value="6">6距離</option>
+    <option value="7">7距離</option>
+    <option value="8">8距離</option>
+    <option value="9">9距離</option>
+    <option value="10">10距離</option>
+  </select>
+</div>
+
+</div>
+
+
+<h2>相手</h2>
+<div class="box">
+
+<div class="row">
+  <label>守備</label>
+  <input type="number" id="defense" value="10">
+</div>
+
+<div class="row">
+  <label>速さ</label>
+  <input type="number" id="enemySpeed" value="10">
+</div>
+
+<div class="row">
+  <label>幸運</label>
+  <input type="number" id="luck" value="10">
+</div>
+
+<div class="row">
+  <label>魔防</label>
+  <input type="number" id="resistance" value="10">
+</div>
+
+<div class="row">
+  <label>体格</label>
+  <input type="number" id="enemyConstitution" value="5">
+</div>
+
+<div class="row">
+  <label>武器</label>
+  <select id="enemyWeapon"></select>
+</div>
+
+<div class="row">
+  <label>クラス</label>
+  <select id="enemyType">
+    <option value="normal">その他のクラス</option>
+    <option value="armored">アーマーナイト</option>
+    <option value="armored">ジェネラル</option>
+    <option value="mounted">ソシアルナイト</option>
+    <option value="mounted">パラディン</option>
+    <option value="flying">ペガサスナイト</option>
+    <option value="flying">ファルコンナイト</option>
+    <option value="dragon_flying">ドラゴンナイト</option>
+    <option value="dragon_flying">ドラゴンマスター</option>
+    <option value="Manakete">マムクート</option>
+    <option value="DemonDragon">魔竜</option>
+  </select>
+</div>
+
+<div class="row">
+  <label>地形</label>
+  <select id="terrain">
+    <option value="0">地形効果なし(+0％)</option>
+    <option value="30">城・海 (+30％)</option>
+    <option value="25">山 (+25％)</option>
+    <option value="20">砦・柱 (+20％)</option>
+    <option value="15">林 (+15％)</option>
+    <option value="5">草原 (+5％)</option>
+  </select>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="tabs">
+  <button onclick="showTab('damage')">ダメージ</button>
+  <button onclick="showTab('hit')">命中</button>
+  <button onclick="showTab('double')">追撃</button>
+  <button onclick="showTab('crit')">必殺</button>
+</div>
+
+<div id="damage" class="tab-content">
+
+<h2>ダメージ計算</h2>
+<div class="box">
+  必要な値：自分の攻撃力、相手の守備力、相手の魔防、自分の武器、相手クラス<br><br>
+<button id="calcBtn">計算</button>
+<p id="result" class="result"></p>
+</div>
+
+</div>
+
+<div id="hit" class="tab-content">
+
+<h2>命中率</h2>
+<div class="box">
+  必要な値：自分の技、相手の速さ、相手の運、自分の武器、相手の武器、相手クラス、相手の地形<br><br>
+<button onclick="calculateHit()">計算</button>
+<p id="hitResult" class="hitResult"></p>
+</div>
+
+</div>
+
+<div id="double" class="tab-content">
+
+<h2>追撃</h2>
+<div class="box">
+  必要な値：自分の速さ、相手の速さ、自分の武器、相手の武器<br><br>
+<button onclick="checkDouble()">判定</button>
+<p id="doubleResult" class="doubleResult"></p>
+</div>
+
+</div>
+
+<div id="crit" class="tab-content">
+
+<h2>必殺</h2>
+<div class="box">
+  必要な値：自分の速さ、相手の運、自分の武器<br><br>
+<button onclick="calculateCrit()">計算</button>
+<p id="critResult" class="doubleResult"></p>
+</div>
+
+</div>
+
+<br><br>
+<a href="fe-home.html">← ホームに戻る</a>
+
+</div>
+
+  <script src="huuinn.js"></script>
+</body>
+</div>
+</html>
