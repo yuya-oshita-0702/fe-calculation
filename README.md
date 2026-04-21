@@ -62,7 +62,7 @@
 ---
 
 ## デモ
-https://yuya-oshita-0702.github.io/estimate-calculator/
+https://yuya-oshita-0702.github.io/fe-calculation/
 
 ---
 
