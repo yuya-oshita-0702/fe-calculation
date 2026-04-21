@@ -113,6 +113,11 @@ document.getElementById("calcBtn").addEventListener("click", () => {
  const playerWeapon =
    weapons[document.getElementById("playerWeapon").value];
 
+   if (playerWeapon.type === "none") {
+  document.getElementById("result").innerHTML = "武器がないため攻撃できません";
+  return;
+ }
+
  let totalAttack = attack + playerWeapon.power;
 
  // 特効

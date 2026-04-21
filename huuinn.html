@@ -2,356 +2,383 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-<div class="container"></div>
-<style>
-  body {
-    font-family: sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 20px;
-  }
-
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .description {
-    text-align: center;
-    color: gray;
-  }
-
-  h2 {
-    border-left: 5px solid #2c3e50;
-    padding-left: 10px;
-    margin-top: 30px;
-    color: #2c3e50;
-  }
-
-  .container {
-    max-width: 800px;
-    margin: auto;
-  }
-
-  .box {
-    background: #ffffff;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-
-  .row {
-    margin: 8px 0;
-  }
-
- .row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
- }
-
-.row label {
-  width: 120px;
- }
-
- .row input,
- .row select {
-   flex: 1;
- }
-
-  label {
-    display: inline-block;
-    width: 140px;
-  }
-
-  input, select {
-    padding: 5px;
-    width: 150px;
-  }
-
-  .flex {
-  display: flex;
-  gap: 20px;
-  }
-
-  .flex .box {
-   flex: 1;
-  }
-
-  button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #34495e;
-  }
-
-
-  .tabs {
-  margin-top: 20px;
-}
-
-.tabs button {
-  margin-right: 5px;
-  padding: 8px 12px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-  .result {
-    margin-top: 10px;
-    padding: 10px;
-    background: #ecf0f1;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-
-  .hitResult {
-    margin-top: 10px;
-    padding: 10px;
-    background: #ecf0f1;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-
-  .doubleResult {
-    margin-top: 10px;
-    padding: 10px;
-    background: #ecf0f1;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-
-  .critResult {
-    margin-top: 10px;
-    padding: 10px;
-    background: #ecf0f1;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-
-  @media (max-width: 600px) {
-  .flex {
-    flex-direction: column;
-  }
-
-  label {
-    width: 100px;
-  }
- }
-
-</style>
-
   <title>FE封印の剣 戦闘計算ツール</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    h2 {
+      border-left: 5px solid #2c3e50;
+      padding-left: 10px;
+      font-size: 20px;
+      margin-top: 30px;
+      color: #2c3e50;
+      background: #ecf0f1;
+      padding: 5px 10px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 90%;
+      margin: auto;
+    }
+
+    .box {
+      background: #ffffff;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+
+    .row label {
+      width: 120px;
+    }
+
+    .row input,
+    .row select {
+      flex: 1;
+    }
+
+    .flex {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .flex .box {
+      flex: 1;
+      padding: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #34495e;
+    }
+
+    .tabs {
+      margin-top: 20px;
+    }
+
+    .tabs button {
+      margin-right: 5px;
+      padding: 8px 12px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #ecf0f1;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 800px) {
+      .flex {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
-<h1>FE封印の剣 戦闘計算ツール</h1>
 
-<p>
-攻撃・守備などのパラメータを考慮して戦闘結果を計算します
-</p>
+<div class="container">
 
-<h2>値入力</h2>
- 
-<div class="flex">
+  <h1>FE封印の剣 戦闘計算ツール</h1>
 
-<h2>自分</h2>
+  <p class="description">
+    戦闘時のダメージ・命中・必殺・追撃などを計算できます
+  </p>
 
-<div class="box">
+  <h2>ステータス入力</h2>
 
-<div class="row">
-  <label>力</label>
-  <input type="number" id="attack" value="10">
+  <div class="flex">
+
+    <!-- 自分 -->
+    <div>
+      <h2>攻撃側</h2>
+      <div class="box">
+
+        <div class="row"><label>力</label><input type="number" id="attack" value="10"></div>
+        <div class="row"><label>魔力</label><input type="number" id="magic" value="10"></div>
+        <div class="row"><label>技</label><input type="number" id="skill" value="10"></div>
+        <div class="row"><label>速さ</label><input type="number" id="playerSpeed" value="10"></div>
+        <div class="row"><label>幸運</label><input type="number" id="playerluck" value="10"></div>
+        <div class="row"><label>体格</label><input type="number" id="Constitution" value="5"></div>
+
+        <div class="row">
+          <label>武器</label>
+          <select id="playerWeapon"></select>
+        </div>
+
+        <div class="row">
+          <label>クラス</label>
+          <select id="playerType">
+            <option value="normal">その他</option>
+            <option value="swordmaster">ソードマスター</option>
+            <option value="berserker">バーサーカー</option>
+          </select>
+        </div>
+        
+        <div class="row">
+          <label>攻撃距離</label>
+          <select id="attackRange">
+            <option value="1">近接</option>
+            <option value="2">2距離</option>
+            <option value="3">3距離</option>
+            <option value="4">4距離</option>
+            <option value="5">5距離</option>
+            <option value="6">6距離</option>
+            <option value="7">7距離</option>
+            <option value="8">8距離</option>
+            <option value="9">9距離</option>
+            <option value="10">10距離</option>
+            <option value="11">11距離</option>
+            <option value="12">12距離</option>
+            <option value="13">13距離</option>
+            <option value="14">14距離</option>
+            <option value="15">15距離</option>
+            <option value="16">16距離</option>
+            <option value="17">17距離</option>
+            <option value="18">18距離</option>
+            <option value="19">19距離</option>
+            <option value="20">20距離</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>攻撃側支援１</label>
+          <select id="playerSupport1"></select>
+        </div>
+
+        <div class="row">
+          <label>攻撃側支援２</label>
+          <select id="playerSupport2"></select>
+        </div>
+
+        <div class="row">
+          <label>攻撃側支援３</label>
+          <select id="playerSupport3"></select>
+        </div>
+
+        <div class="row">
+          <label>攻撃側支援４</label>
+          <select id="playerSupport4"></select>
+        </div>
+
+        <div class="row">
+          <label>攻撃側支援５</label>
+          <select id="playerSupport5"></select>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- 相手 -->
+    <div>
+      <h2>相手側</h2>
+      <div class="box">
+
+        <div class="row"><label>守備</label><input type="number" id="defense" value="10"></div>
+        <div class="row"><label>速さ</label><input type="number" id="enemySpeed" value="10"></div>
+        <div class="row"><label>魔防</label><input type="number" id="resistance" value="10"></div>
+        <div class="row"><label>幸運</label><input type="number" id="enemyluck" value="10"></div>
+        <div class="row"><label>体格</label><input type="number" id="enemyConstitution" value="5"></div>
+
+        <div class="row">
+          <label>武器</label>
+          <select id="enemyWeapon"></select>
+        </div>
+
+        <div class="row">
+          <label>クラス</label>
+          <select id="enemyType">
+            <option value="normal">その他</option>
+            <option value="armored">アーマーナイト</option>
+            <option value="armored">ジェネラル</option>
+            <option value="mounted">ソシアルナイト</option>
+            <option value="mounted">パラディン</option>
+            <option value="flying">ペガサスナイト</option>
+            <option value="flying">ファルコンナイト</option>
+            <option value="dragon_flying">ドラゴンナイト</option>
+            <option value="dragon_flying">ドラゴンマスター</option>
+            <option value="Manakete">マムクート</option>
+            <option value="DemonDragon">魔竜</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label> 地形 </label>
+          <select id="terrain">
+            <option value="plain">平地</option>
+            <option value="road">道</option>
+            <option value="floor">床</option>
+            <option value="cliff">崖</option>
+            <option value="chest">宝箱</option>
+            <option value="river">川</option>
+            <option value="shoal">浅瀬</option>
+            <option value="desert">砂漠</option>
+            <option value="sea">海</option>
+            <option value="lake">湖</option>
+            <option value="village">村</option>
+            <option value="house">民家</option>
+            <option value="armory">武器屋</option>
+            <option value="shop">道具屋</option>
+            <option value="arena">闘技場</option>
+            <option value="wall">城壁</option>
+            <option value="forest">森</option>
+            <option value="fort">砦</option>
+            <option value="gate">城門</option>
+            <option value="mountain">山</option>
+            <option value="throne">玉座</option>
+            <option value="high_mountain">高い山</option>
+          </select>
+        </div>
+
+        <div class="row">
+            <label>相手側支援１</label>
+            <select id="enemySupport1"></select>
+        </div>
+
+        <div class="row">
+            <label>相手側支援２</label>
+            <select id="enemySupport2"></select>
+        </div>
+
+        <div class="row">
+            <label>相手側支援３</label>
+            <select id="enemySupport3"></select>
+        </div>
+
+        <div class="row">
+            <label>相手側支援４</label>
+            <select id="enemySupport4"></select>
+        </div>
+
+        <div class="row">
+            <label>相手側支援５</label>
+            <select id="enemySupport5"></select>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- タブ -->
+  <div class="tabs">
+    <button onclick="showTab('damage')">ダメージ</button>
+    <button onclick="showTab('hit')">武器命中</button>
+    <button onclick="showTab('staffhit')">杖命中</button>
+    <button onclick="showTab('double')">追撃</button>
+    <button onclick="showTab('crit')">必殺</button>
+  </div>
+
+  <!-- 各タブ -->
+  <div id="damage" class="tab-content">
+    <h2>ダメージ</h2>
+    <div class="box">
+      必要な値 <br>
+      自分側：力、魔力、自分の武器、攻撃距離、自分の支援<br>
+      相手側：守備、魔防、相手の武器、相手のクラス、相手の地形、相手の支援<br>
+      <button id="calcBtn">計算</button>
+      <p id="result" class="result"></p>
+    </div>
+  </div>
+
+  <div id="hit" class="tab-content">
+    <h2>命中</h2>
+    <div class="box">
+      必要な値 <br>
+      自分側：技、幸運、自分の武器、自分の支援<br>
+      相手側：速さ、幸運、体格、相手の武器、相手のクラス、相手の地形、相手の支援<br>
+      <button onclick="calculateHit()">計算</button>
+      <p id="hitResult" class="result"></p>
+    </div>
+  </div>
+
+  <div id="staffhit" class="tab-content">
+    <h2>杖命中</h2>
+    <div class="box">
+      必要な値 <br>
+      自分側：魔力、技、自分の支援<br>
+      相手側：魔防<br>
+      <button onclick="calculateStaffhit()">計算</button>
+      <p id="staffhitResult" class="result"></p>
+    </div>
+  </div>
+
+
+  <div id="double" class="tab-content">
+    <h2>追撃</h2>
+    <div class="box">
+      必要な値 <br>
+      自分側：速さ、体格、自分の武器、攻撃距離<br>
+      相手側：速さ、体格、相手の武器<br>
+      <button onclick="checkDouble()">判定</button>
+      <p id="doubleResult" class="result"></p>
+    </div>
+  </div>
+
+  <div id="crit" class="tab-content">
+    <h2>必殺</h2>
+    <div class="box">
+      必要な値 <br>
+      自分側：技、自分の武器、自分のクラス、自分の支援<br>
+      相手側：幸運、相手の支援<br>
+      <button onclick="calculateCrit()">計算</button>
+      <p id="critResult" class="result"></p>
+    </div>
+  </div>
+
+  <br><br>
+  <a href="index.html">← ホームに戻る</a>
+
 </div>
 
-<div class="row">
-  <label>魔力</label>
-  <input type="number" id="magic" value="10">
-</div>
+<script src="huuinn.js"></script>
 
-<div class="row">
-  <label>技</label>
-  <input type="number" id="skill" value="10">
-</div>
-
-<div class="row">
-  <label>速さ</label>
-  <input type="number" id="playerSpeed" value="10">
-</div>
-
-<div class="row">
-  <label>幸運</label>
-  <input type="number" id="critLuck" value="10">
-</div>
-
-<div class="row">
-  <label>体格</label>
-  <input type="number" id="Constitution" value="5">
-</div>
-
-<div class="row">
-  <label>武器</label>
-  <select id="playerWeapon"></select>
-</div>
-
-<div class="row">
-  <label>攻撃距離</label>
-  <select id="attackRange">
-    <option value="1">近接</option>
-    <option value="2">2距離</option>
-    <option value="3">3距離</option>
-    <option value="4">4距離</option>
-    <option value="5">5距離</option>
-    <option value="6">6距離</option>
-    <option value="7">7距離</option>
-    <option value="8">8距離</option>
-    <option value="9">9距離</option>
-    <option value="10">10距離</option>
-  </select>
-</div>
-
-</div>
-
-
-<h2>相手</h2>
-<div class="box">
-
-<div class="row">
-  <label>守備</label>
-  <input type="number" id="defense" value="10">
-</div>
-
-<div class="row">
-  <label>速さ</label>
-  <input type="number" id="enemySpeed" value="10">
-</div>
-
-<div class="row">
-  <label>幸運</label>
-  <input type="number" id="luck" value="10">
-</div>
-
-<div class="row">
-  <label>魔防</label>
-  <input type="number" id="resistance" value="10">
-</div>
-
-<div class="row">
-  <label>体格</label>
-  <input type="number" id="enemyConstitution" value="5">
-</div>
-
-<div class="row">
-  <label>武器</label>
-  <select id="enemyWeapon"></select>
-</div>
-
-<div class="row">
-  <label>クラス</label>
-  <select id="enemyType">
-    <option value="normal">その他のクラス</option>
-    <option value="armored">アーマーナイト</option>
-    <option value="armored">ジェネラル</option>
-    <option value="mounted">ソシアルナイト</option>
-    <option value="mounted">パラディン</option>
-    <option value="flying">ペガサスナイト</option>
-    <option value="flying">ファルコンナイト</option>
-    <option value="dragon_flying">ドラゴンナイト</option>
-    <option value="dragon_flying">ドラゴンマスター</option>
-    <option value="Manakete">マムクート</option>
-    <option value="DemonDragon">魔竜</option>
-  </select>
-</div>
-
-<div class="row">
-  <label>地形</label>
-  <select id="terrain">
-    <option value="0">地形効果なし(+0％)</option>
-    <option value="30">城・海 (+30％)</option>
-    <option value="25">山 (+25％)</option>
-    <option value="20">砦・柱 (+20％)</option>
-    <option value="15">林 (+15％)</option>
-    <option value="5">草原 (+5％)</option>
-  </select>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="tabs">
-  <button onclick="showTab('damage')">ダメージ</button>
-  <button onclick="showTab('hit')">命中</button>
-  <button onclick="showTab('double')">追撃</button>
-  <button onclick="showTab('crit')">必殺</button>
-</div>
-
-<div id="damage" class="tab-content">
-
-<h2>ダメージ計算</h2>
-<div class="box">
-  必要な値：自分の攻撃力、相手の守備力、相手の魔防、自分の武器、相手クラス<br><br>
-<button id="calcBtn">計算</button>
-<p id="result" class="result"></p>
-</div>
-
-</div>
-
-<div id="hit" class="tab-content">
-
-<h2>命中率</h2>
-<div class="box">
-  必要な値：自分の技、相手の速さ、相手の運、自分の武器、相手の武器、相手クラス、相手の地形<br><br>
-<button onclick="calculateHit()">計算</button>
-<p id="hitResult" class="hitResult"></p>
-</div>
-
-</div>
-
-<div id="double" class="tab-content">
-
-<h2>追撃</h2>
-<div class="box">
-  必要な値：自分の速さ、相手の速さ、自分の武器、相手の武器<br><br>
-<button onclick="checkDouble()">判定</button>
-<p id="doubleResult" class="doubleResult"></p>
-</div>
-
-</div>
-
-<div id="crit" class="tab-content">
-
-<h2>必殺</h2>
-<div class="box">
-  必要な値：自分の速さ、相手の運、自分の武器<br><br>
-<button onclick="calculateCrit()">計算</button>
-<p id="critResult" class="doubleResult"></p>
-</div>
-
-</div>
-
-<br><br>
-<a href="index.html">← ホームに戻る</a>
-
-</div>
-
-  <script src="huuinn.js"></script>
 </body>
-</div>
 </html>
