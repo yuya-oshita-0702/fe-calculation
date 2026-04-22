@@ -59,9 +59,9 @@
 
 ## 今後の改善予定
 
-* 他作品（烈火・聖魔など）への対応　1番
-* UIの改善　2番
-* コードの整理・最適化　3番
+1. 他作品（烈火・聖魔など）への対応
+2. UIの改善
+3. コードの整理・最適化
 
 ---
 
@@ -70,9 +70,14 @@ https://yuya-oshita-0702.github.io/fe-calculation/
 
 ---
 
-##  画面イメージ
+###  ホームページ
+![home](images/home.png)
 
-![スクリーンショット](images/screenshot.png)
+###  入力欄
+![input](images/input.png)
+
+###  結果出力欄
+![calculate](images/calculate.png)
 
 ---
 
