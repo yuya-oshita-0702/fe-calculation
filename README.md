@@ -70,6 +70,12 @@ https://yuya-oshita-0702.github.io/fe-calculation/
 
 ---
 
+##  画面イメージ
+
+![スクリーンショット](images/screenshot.png)
+
+---
+
 ## 作者
 - 名前：yuya-oshita-0702
 - GitHub：https://github.com/yuya-oshita-0702
