@@ -84,6 +84,11 @@
       cursor: pointer;
     }
 
+    .global-action {
+      margin: 15px 0;
+      text-align: center;
+    }
+
     button:hover {
       background-color: #34495e;
     }
@@ -140,8 +145,8 @@
       <h2>攻撃側</h2>
       <div class="box">
 
-        <div class="row"><label>力</label><input type="number" id="attack" value="10"></div>
-        <div class="row"><label>魔力</label><input type="number" id="magic" value="10"></div>
+        <div class="row"><label>力</label><input type="number" id="strength"></div>
+        <div class="row"><label>魔力</label><input type="number" id="magic"></div>
         <div class="row"><label>技</label><input type="number" id="skill" value="10"></div>
         <div class="row"><label>速さ</label><input type="number" id="playerSpeed" value="10"></div>
         <div class="row"><label>幸運</label><input type="number" id="playerluck" value="10"></div>
@@ -316,6 +321,11 @@
     <button onclick="showTab('crit')">必殺</button>
   </div>
 
+  <div class="global-action">
+    <button id="calcBtn">全て計算</button>
+  </div>
+
+
   <!-- 各タブ -->
   <div id="damage" class="tab-content">
     <h2>ダメージ</h2>
@@ -323,7 +333,6 @@
       必要な値 <br>
       自分側：力、魔力、自分の武器、攻撃距離、自分の支援<br>
       相手側：守備、魔防、相手の武器、相手のクラス、相手の地形、相手の支援<br>
-      <button id="calcBtn">計算</button>
       <p id="result" class="result"></p>
     </div>
   </div>
@@ -334,7 +343,6 @@
       必要な値 <br>
       自分側：技、幸運、自分の武器、自分の支援<br>
       相手側：速さ、幸運、体格、相手の武器、相手のクラス、相手の地形、相手の支援<br>
-      <button onclick="calculateHit()">計算</button>
       <p id="hitResult" class="result"></p>
     </div>
   </div>
@@ -345,7 +353,6 @@
       必要な値 <br>
       自分側：魔力、技、自分の支援<br>
       相手側：魔防<br>
-      <button onclick="calculateStaffhit()">計算</button>
       <p id="staffhitResult" class="result"></p>
     </div>
   </div>
@@ -357,7 +364,6 @@
       必要な値 <br>
       自分側：速さ、体格、自分の武器、攻撃距離<br>
       相手側：速さ、体格、相手の武器<br>
-      <button onclick="checkDouble()">判定</button>
       <p id="doubleResult" class="result"></p>
     </div>
   </div>
@@ -368,7 +374,6 @@
       必要な値 <br>
       自分側：技、自分の武器、自分のクラス、自分の支援<br>
       相手側：幸運、相手の支援<br>
-      <button onclick="calculateCrit()">計算</button>
       <p id="critResult" class="result"></p>
     </div>
   </div>
@@ -378,7 +383,19 @@
 
 </div>
 
+<script src="js/common/utils.js"></script>
+<script src="js/common/ui.js"></script>
+
 <script src="huuinn.js"></script>
+
+<script src="js/fe6/validate.js"></script>
+<script src="js/fe6/damage.js"></script>
+<script src="js/fe6/hit.js"></script>
+<script src="js/fe6/staffhit.js"></script>
+<script src="js/fe6/double.js"></script>
+<script src="js/fe6/crit.js"></script>
+
+<script src="js/main.js"></script>
 
 </body>
 </html>

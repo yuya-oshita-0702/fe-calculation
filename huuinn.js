@@ -1904,7 +1904,7 @@ function calculateAvoid(data, support, terrainAvo) {
 }
 
 
-
+/*
 // 実効命中率計算
 function generate2RNTable() {
   const counts = Array(100).fill(0);
@@ -1926,7 +1926,7 @@ function generate2RNTable() {
 
   return table;
 }
-
+*/
 
 
 // 実効命中率
@@ -1940,12 +1940,12 @@ function calculateRealHit(displayHit) {
 }
 
 
-
+/*
 // clamp
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
-
+*/
 
 
 // 攻速計算
@@ -2015,15 +2015,14 @@ function getClassCritBonus(type) {
 
 // ボタン処理
 document.getElementById("calcBtn").addEventListener("click", () => {
-  calculateDamage();
-  calculateCrit();
+  calculateAll_FE6();
 });
 
 
 
 function getInputs() {
   return {
-    strength: Number(document.getElementById("attack").value),
+    strength: Number(document.getElementById("strength").value),
     magic: Number(document.getElementById("magic").value),
     defense: Number(document.getElementById("defense").value),
     skill: Number(document.getElementById("skill").value),
@@ -2044,13 +2043,13 @@ function getInputs() {
 }
 
 
-
+/*
 function display(id, text) {
   document.getElementById(id).innerHTML = text;
 }
+*/
 
-
-
+/*
 // ダメージ計算
 function calculateDamage() {
 
@@ -2302,7 +2301,7 @@ function calculateCrit() {
     finalCrit
   });
 }
-
+*/
 
 function showTab(tabId) {
   const tabs = document.querySelectorAll(".tab-content");
